@@ -24,8 +24,7 @@ class BookModel
                 'price' => 55
             )
         );
-
-        return compact($books);
+        return $books[$id];
 
     }
 
@@ -51,6 +50,6 @@ class BookModel
             )
         );
 
-        return compact($books);
+        return $books;
     }
 }

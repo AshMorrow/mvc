@@ -21,8 +21,6 @@ class IndexController extends Controller
     public function contactAction(Request $request){
         $form = new ContactForm($request);
         $flash = strip_tags($request->get('flash'));
-        var_dump($form);
-        echo $form->getSerializeDate();
         if ($request->isPost()){ // была ли отправлена форма
             if($form->isValid()){
                 //TODO: write to file

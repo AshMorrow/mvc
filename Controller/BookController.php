@@ -12,13 +12,12 @@ class BookController extends Controller
 
         $model = new BookModel();
         $books = $model->findAll();
-
         return $this->render('index',$books);
     }
     
     public function showAction(Request $request){
         $id = $request->get('id');
-        $book = (new BookModel())->findById($id); // Оказывается так можно
-        return $this->render('show',$book);
+        $books = (new BookModel())->findById($id); // Оказывается так можно
+        return $this->render('show',$books);
     }
 }
