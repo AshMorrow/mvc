@@ -9,10 +9,16 @@
 class BookController extends Controller
 {
     public function indexAction(Request $request){
-        return $this->render('index',$param);
+
+        $model = new BookModel();
+        $books = $model->findAll();
+
+        return $this->render('index',$books);
     }
     
-    public function contactAction(Request $request){
-        return "<b>This is contact action of book controller</b>";  
+    public function showAction(Request $request){
+        $id = $request->get('id');
+        $book = (new BookModel())->findById($id); // Оказывается так можно
+        return $this->render('show',$book);
     }
 }

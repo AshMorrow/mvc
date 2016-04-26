@@ -9,7 +9,12 @@
 class IndexController extends Controller
 {
     public function indexAction(Request $request,array $param = []){
-        //echo include(VIEW_DIR . 'Index/index.phtml');
+
+        $model = new PageModel();
+        $page = $model->findByAllias('homepage');
+        $param = array(
+            'page' => $page
+        );
        return $this->render('index',$param);
     }
 

@@ -1,1 +1,10 @@
-<b>This is index action of book controller</b>
+<h1>Books</h1>
+
+<?php foreach($param as $id => $book): ?>
+
+    Author: <?=$id,$book['author']?><br>
+    Title: <?=$book['title']?><br>
+    Price: <?=$book['price']?><br>
+    <a href="/index.php?route=book/show&amp;id<?=$id?>">Details</a>
+    <hr>
+<?php endforeach; ?>
