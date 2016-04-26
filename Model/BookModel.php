@@ -24,6 +24,9 @@ class BookModel
                 'price' => 55
             )
         );
+        if(!isset($books[$id])){
+            throw new Exception (' Book '.$id.' not found',404);
+        }
         return $books[$id];
 
     }

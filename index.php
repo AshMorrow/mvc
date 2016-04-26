@@ -20,23 +20,26 @@ function __autoload($c_name)
         throw new Exception("{$file} not found");
     }
 }
+try {
+    $request = new Request();
+    $route = $request->get('route');
+    if (is_null($route)) {
+        $route = "index/index";
+    }
+    $route = explode('/', $route);
 
-$request = new Request();
-$route = $request->get('route');
-if (is_null($route)) {
-    $route = "index/index";
+    $controller = ucfirst(strtolower($route[0])) . 'Controller';  //Like book =>> BookController
+    $action = $route[1] . 'Action';
+    $controller = new $controller();
+
+    if (!method_exists($controller, $action)) {
+        throw new Exception("{$action} not found");
+    }
+    $content = $controller->$action($request);
+}catch(Exception $e){
+    $content = Controller::renderError($e->getCode(),$e->getMessage());
 }
-$route = explode('/', $route);
 
-$controller = ucfirst(strtolower($route[0])) . 'Controller';  //Like book =>> BookController
-$action = $route[1] . 'Action';
-$controller = new $controller();
-
-if(!method_exists($controller,$action)){
-    throw new Exception("{$action} not found");
-}
-
-$content = $controller->$action($request);
 
 
 

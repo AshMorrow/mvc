@@ -21,4 +21,10 @@ abstract class Controller
         require $file;
         return ob_get_clean();
     }
+
+    public function renderError($code,$massage){
+        ob_start();
+        require_once VIEW_DIR.'error.phtml';
+        return ob_get_clean();
+    }
 }
