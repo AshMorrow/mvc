@@ -53,7 +53,7 @@ class Request{
     }
 
     public function getIpAddres(){
-        return $this->server('REMORE_ADDR');
+        return $this->server('REMOTE_ADDR');
     }
     public function getParameter(){
         $param = [];

@@ -30,7 +30,7 @@ class IndexController extends Controller
                     'username' => $form->username,
                     'email' => $form->email,
                     'massage' => $form->massage,
-                    'created' => $datetime->format(),
+                    'created' => $datetime->format('Y-m-d H:i:s'),
                     'ip' => $request->getIpAddres()
                 ]);
                 Session::setFlash('Massage sent');
