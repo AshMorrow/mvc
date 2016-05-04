@@ -6,27 +6,19 @@ class BookModel
     public function findById($id)
     {
 
-        $books = array(
-
-            array(
-                'title' => 'Carrie',
-                'author' => 'King',
-                'price' => 123
-            ),
-            array(
-                'title' => 'Boo',
-                'author' => 'Larry',
-                'price' => 524
-            ),
-            array(
-                'title' => 'Foo',
-                'author' => 'Rood',
-                'price' => 55
-            )
-        );
-        if(!isset($books[$id])){
-            throw new Exception (' Book '.$id.' not found',404);
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->query('SELECT * FROM book WHERE id ='. $id);
+        $sth->execute();
+        $data = $sth->fetchAll(PDO::FETCH_ASSOC);
+        if(!$data){
+            throw new Exception('empty array',404);
         }
+
+        $books = $data;
+
+//        if (!isset($books[$id])) {
+//            throw new Exception (' Book ' . $id . ' not found', 404);
+//        }
         return $books[$id];
 
     }
@@ -34,24 +26,15 @@ class BookModel
     public function findAll()
     {
 
-        $books = array(
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->query('SELECT * FROM book ORDER BY price');
+        $sth->execute();
+        $data = $sth->fetchAll(PDO::FETCH_ASSOC);
+        if(!$data){
+            throw new Exception('empty array',404);
+        }
 
-            array(
-                'title' => 'Carrie',
-                'author' => 'King',
-                'price' => 123
-            ),
-            array(
-                'title' => 'Boo',
-                'author' => 'Larry',
-                'price' => 524
-            ),
-            array(
-                'title' => 'Foo',
-                'author' => 'Rood',
-                'price' => 55
-            )
-        );
+        $books = $data;
 
         return $books;
     }
