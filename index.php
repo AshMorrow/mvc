@@ -47,3 +47,4 @@ try {
 require VIEW_DIR . 'default_layout.phtml';
 var_dump($route,$controller,$action);
 var_dump($_SERVER['REQUEST_URI']);
+echo session_save_path();
