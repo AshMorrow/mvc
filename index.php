@@ -21,6 +21,7 @@ function __autoload($c_name)
     }
 }
 try {
+    Session::start();
     $request = new Request();
     $route = $request->get('route');
     if (is_null($route)) {

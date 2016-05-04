@@ -20,15 +20,23 @@ class IndexController extends Controller
 
     public function contactAction(Request $request){
         $form = new ContactForm($request);
-        $flash = strip_tags($request->get('flash'));
+        $datetime = new DateTime();
         if ($request->isPost()){ // была ли отправлена форма
             if($form->isValid()){
-                //TODO: write to file
-                file_put_contents(DATA_DIR.'contact_form.txt'.PHP_EOL,
-                    $form->getSerializeDate(),FILE_APPEND);
-                Router::redirect('/index.php?route=index/contact&flash=Massage sent');
+                
+                
+                (new FeedbackModel())->save([
+                   'id' => null,
+                    'username' => $form->username,
+                    'email' => $form->email,
+                    'massage' => $form->massage,
+                    'created' => $datetime->format(),
+                    'ip' => $request->getIpAddres()
+                ]);
+                Session::setFlash('Massage sent');
+                Router::redirect('/index.php?route=index/contact');
             }
-            $flash = 'Field the field';
+            Session::setFlash('Field the field');
         }
 //        $args = [
 //            'form'=>$form,
@@ -36,7 +44,7 @@ class IndexController extends Controller
 //        ];
         // Вернет масси с указаными ключами значения который возьмет из одноименных
         // переменных
-        $args = compact('form','flash');
+        $args = compact('form');
         return $this->render('contact',$args);
     }
 }

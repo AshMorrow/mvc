@@ -11,6 +11,7 @@ class FeedbackModel{
         //TODO: проверить что бы в массиве $masage бфли ключи как поля в таблице
 
         $db = DbConnection::getInstance()->getPdo();
-        $db = $db->prepare('INSERT INTO feedback VLUES (:id,:username,:email,:massage,:crated,:ip)');
+        $sth = $db->prepare('INSERT INTO feedback VLUES (:id,:username,:email,:massage,:crated,:ip)');
+        $sth->execute($massage);
     }
 }

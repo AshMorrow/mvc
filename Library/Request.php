@@ -2,6 +2,7 @@
 class Request{
     private $get;
     private $post;
+    private $server;
     private $request;
     private $param = ['id','roz'];
 
@@ -9,6 +10,7 @@ class Request{
     {
         $this->get = $_GET;
         $this->post = $_POST;
+        $this->server = $_SERVER;
         $this->request = $_REQUEST;
     }
 
@@ -43,7 +45,16 @@ class Request{
             return $this->post[$name];
         }
     }
-    
+
+    public function server($key){
+        if($this->server[$key]){
+            return $this->server[$key];
+        }
+    }
+
+    public function getIpAddres(){
+        return $this->server('REMORE_ADDR');
+    }
     public function getParameter(){
         $param = [];
         foreach ($this->param as $v){
