@@ -36,7 +36,7 @@ try {
     if (!method_exists($controller, $action)) {
         throw new Exception("{$action} not found");
     }
-    $content = $controller->$action($request);
+   $content = $controller->$action($request);
 }catch(Exception $e){
     $content = Controller::renderError($e->getCode(),$e->getMessage());
 }
@@ -44,8 +44,7 @@ try {
 
 
 
-
-require VIEW_DIR . 'default_layout.phtml';
+echo $content;
+//require VIEW_DIR . 'default_layout.phtml';
 var_dump($route,$controller,$action);
 var_dump($_SERVER['REQUEST_URI']);
-echo session_save_path();

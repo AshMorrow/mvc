@@ -20,4 +20,10 @@ class BookController extends Controller
         $books = (new BookModel())->findById($id); // Оказывается так можно
         return $this->render('show',$books);
     }
+
+    public function apiAction(Request $request){
+        $model = new BookModel();
+        $books = $model->findAll();
+        return json_encode($books);
+    }
 }
