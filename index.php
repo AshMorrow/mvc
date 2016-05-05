@@ -22,6 +22,7 @@ function __autoload($c_name)
     }
 }
 try {
+    ob_start(); // непонимаю почепу при отправке админ формы неудается сделать редирект
     Session::start();
     Config::setFromXML('db.xml');
     $request = new Request();
@@ -43,10 +44,8 @@ try {
     $content = Controller::renderError($e->getCode(),$e->getMessage());
 }
 
-
-
-
 echo $content;
+
 //require VIEW_DIR . 'default_layout.phtml';
 var_dump($route,$controller,$action);
 var_dump($_SERVER['REQUEST_URI']);

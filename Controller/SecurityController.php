@@ -10,11 +10,20 @@ class SecurityController extends Controller // В контролере нахо�
 {
     public function loginAction(Request $request){
         $form = new LoginForm($request);
-
         if($request->isPost()){
             if($form->isValid()){
-                Session::setFlash('Success');
-                Router::redirect('/index.php?route=security/login');
+                $model = new UserModel();
+                $password = new Password($form->password);
+                $email = $form->email;
+                if($model->find($email,$password)){
+                    Session::set('user',$email);
+                    //Session::setFlash('Signed in');
+                    Router::redirect('/index.php?route=security/admin');
+                }
+
+                Session::setFlash('User not Found');
+                //Router::redirect('/index.php?route=security/login');
+
             }
 
             Session::setFlash('You idiot');
@@ -23,4 +32,7 @@ class SecurityController extends Controller // В контролере нахо�
 
     }
 
+    public function adminAction(Request $request){
+        return $this->render('admin');
+    }
 }
