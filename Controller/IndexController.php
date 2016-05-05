@@ -47,4 +47,6 @@ class IndexController extends Controller
         $args = compact('form');
         return $this->render('contact',$args);
     }
+
+
 }

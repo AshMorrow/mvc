@@ -1,0 +1,6 @@
+ <db>
+     <host>127.0.0.1</host>
+     <user>root</user>
+     <pass>1111</pass>
+     <dbname>mvc1102</dbname>
+ </db>

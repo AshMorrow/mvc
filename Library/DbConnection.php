@@ -14,7 +14,9 @@ class DbConnection
 
     private function __construct() {
 
-        $this->pdo = new PDO('mysql: host=127.0.0.1; dbname=mvc1102','root','1111');
+        $this->pdo = new PDO('mysql: host='.Config::get('host').';dbname='.Config::get('dbname').'',Config::get
+        ('user'),
+            Config::get('pass'));
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION); // устанавливает атрибут такой то
         // значение такоето
         $this->pdo->exec('SET NAMES utf8');
