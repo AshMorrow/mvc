@@ -1,6 +1,6 @@
 <db>
-     <host>127.0.0.1</host>
-     <user>root</user>
-     <pass>1111</pass>
-     <dbname>mvc1102</dbname>
+     <host>stellash.mysql.ukraine.com.ua</host>
+     <user>stellash_mvc</user>
+     <pass>7mnzmhvp</pass>
+     <dbname>stellash_mvc</dbname>
 </db>

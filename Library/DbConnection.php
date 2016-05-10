@@ -13,9 +13,7 @@ class DbConnection
     private $pdo;
 
     private function __construct() {
-
-        $this->pdo = new PDO('mysql: host='.Config::get('host').';dbname='.Config::get('dbname').'',Config::get
-        ('user'),
+        $this->pdo =new PDO("mysql:host=".Config::get('host').";dbname=".Config::get('dbname'),Config::get('user'),
             Config::get('pass'));
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION); // устанавливает атрибут такой то
         // значение такоето

@@ -22,7 +22,7 @@ function __autoload($c_name)
     }
 }
 try {
-    ob_start(); // непонимаю почепу при отправке админ формы неудается сделать редирект
+   // ob_start(); // непонимаю почепу при отправке админ формы неудается сделать редирект
     Session::start();
     Config::setFromXML('db.xml');
     $request = new Request();
